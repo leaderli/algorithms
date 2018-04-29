@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+<a href="http://127.0.0.1:8080/dapaofei">屠龙宝刀点击就送</a>
+</body>
+<script>
+    var log   = console.log
+    var obj = {
+        mobile:171,
+        project_url:'http://182.180.11.21:9080/KF_OutBound/Start',
+        vdn:44847,
+        transfer:1
+    }
+    var str = JSON.stringify(obj)
+    log(str)
+    var getJsonValue = function(str, key){
+        if( typeof str === 'string'){
+           return JSON.parse(str)[key]||''
+        }
+        return''
+    }
+
+    log(getJsonValue(str, 'mobile'))
+    log(getJsonValue(str, 'project_url'))
+    log(getJsonValue(str, 'vdn'))
+    log(getJsonValue(str, 'transfer'))
+    log(getJsonValue(str, 'transfer1'))
+    log(getJsonValue(obj, 'transfer'))
+
+</script>
+</html>

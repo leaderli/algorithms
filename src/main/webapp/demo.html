@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="jquery-3.2.1.js"></script>
+    <script>
+        var log = console.log
+        $.fn.highlight1 = function (options) {
+            var obj = $.extend({}, $.fn.highlight1.defaults, options)
+            this.css('backgroundColor', obj.backgroundColor).css('color', obj.color)
+            return this
+        }
+        $.fn.highlight1.defaults = {
+            backgroundColor: '#80b4ff',
+            color: '#d87145'
+        }
+        $.fn.external = function () {
+           return this.filter('a').each(function () {
+              var a = $(this)
+               var url = a.attr('href')
+               if(url.startsWith('http')){
+                  a.attr('href','#0').removeAttr('target').append('<i>🚩</i>').click(
+                      function () {
+                          if(confirm('你确定要前往'+url+'?')){
+                              window.open(url)
+                          }
+                      }
+                  )
+               }
+           })
+        }
+    </script>
+    <style>
+    </style>
+</head>
+<body>
+<div id="test-highlight1">
+    <p>什么是<span>jQuery</span></p>
+    <p><span>jQuery</span>是目前最流行的<span>JavaScript</span>库。</p>
+</div>
+<div id="test-external">
+    <p>如何学习<a href="http://jquery.com">jQuery</a>？</p>
+    <p>首先，你要学习<a href="/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000">JavaScript</a>，并了解基本的<a
+            href="https://developer.mozilla.org/en-US/docs/Web/HTML">HTML</a>。</p>
+</div>
+</body>
+<script>
+    $(function () {
+        $('#test-highlight1').on('click', function () {
+            log(this)
+            $(this).highlight1()
+        })
+        $('#test-external a').external()
+    })
+</script>
+</html>
